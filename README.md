@@ -3,8 +3,10 @@
 
 ## Build
 - Clonar repositorio
+- Copiar el archivo `.env.example` y renonbrarlo como `.env`, configurar dentro la referencia a la base de datos mySql
 - Ejecutar `npm install`
 - Ejecutar `npm run dev`
+- Ejecutar `php artisan migrate`
 - Ejecutar `php artisan storage:link`
 - Ejecutar `php artisan serve`
 
