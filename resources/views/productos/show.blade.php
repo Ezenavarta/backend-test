@@ -20,7 +20,12 @@
                   <h5 class="card-title">{{$producto->name}}</h5>
                   <p class="card-text">{{$producto->description}}</p>
                   <strong>${{$producto->price}}</strong>
-                  <a href="#" class="btn btn-primary float-right">Comprar</a>
+                  <form action="/productos/{{$producto->id}}" method="post">
+                    <a href="{{$producto->id}}/edit" class="btn btn-primary float-right">Editar</a>
+                      @csrf
+                      <input type="hidden" name="_method" value="DELETE"> 
+                      <input type="submit" value="Borrar" class="btn btn-danger float-right"> 
+                  </form>
                 </div>
               </div>
         </div>

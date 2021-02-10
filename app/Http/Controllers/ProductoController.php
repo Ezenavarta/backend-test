@@ -88,9 +88,10 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($producto)
     {
-        //
+        $producto = Producto::findOrFail($producto);
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -100,9 +101,29 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $idproducto)
     {
-        //
+        $producto = Producto::findOrFail($idproducto);
+
+        $this->validate($request, [
+            'name' => 'required|max:60',
+            'description' => 'required|max:10000',
+            'price' => 'required|max:20',
+            'video' => 'required|max:200',
+            'photo' => 'required|image|max:4096',
+        ]);
+
+        $image = request('photo')->store('public/productImages');
+
+        $producto->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'photo' => Storage::url($image),
+            'video' => $this->getYoutubeEmbedUrl($request->video),
+        ]);
+        
+        return redirect()->route('productos.show', $producto->id);
     }
 
     /**
@@ -111,9 +132,11 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($idproducto)
     {
-        //
+        $producto = Producto::findOrFail($idproducto);
+        $producto->delete();
+        return redirect()->route('productos.index');
     }
 
     public function getYoutubeEmbedUrl($url)
