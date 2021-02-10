@@ -1,12 +1,14 @@
 
-## About Laravel
+# Test Frontend
 
+## Build
+- Clonar repositorio
+- Ejecutar `npm install`
+- Ejecutar `npm run dev`
+- Ejecutar `php artisan storage:link`
+- Ejecutar `php artisan serve`
 
-
-## Learning Larave
-
-
-## Laravel Sponsors
-
-
-### Premium Partners
+## Api
+api/productos = retorna un json con todos los productos
+api/productos/{id} = retorna un json con el producto segun el ID
+api/productos/buscar/{clave} = retorna un json con los productos donde el nombre contiene la palabra clave
