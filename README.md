@@ -8,6 +8,7 @@
 - Ejecutar `composer install`
 - Ejecutar `npm install`
 - Ejecutar `npm run dev`
+- Ejecutar `php artisan key:generate`
 - Ejecutar `php artisan migrate`
 - Ejecutar `php artisan storage:link`
 - Ejecutar `php artisan serve`
